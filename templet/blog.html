@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog - TechCode Academy{% endblock %}
+
+{% block main_class %}pt-5{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="bg-primary text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="display-4 fw-bold">Blog & Resources</h1>
+                <p class="lead">Latest insights, tutorials, and industry news from our experts</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Posts -->
+<section class="py-5">
+    <div class="container">
+        {% if page_obj %}
+            <div class="row">
+                {% for post in page_obj %}
+                <div class="col-lg-6 mb-4">
+                    <article class="card h-100 shadow-sm">
+                        {% if post.featured_image %}
+                            <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}">
+                        {% else %}
+                            <div class="card-img-top bg-primary d-flex align-items-center justify-content-center" style="height: 200px;">
+                                <i class="fas fa-newspaper text-white" style="font-size: 60px;"></i>
+                            </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{% url 'blog_detail' post.slug %}" class="text-decoration-none">
+                                    {{ post.title }}
+                                </a>
+                            </h5>
+                            <p class="card-text">{{ post.excerpt }}</p>
+                            <div class="blog-meta">
+                                <small class="text-muted">
+                                    <i class="fas fa-user"></i> {{ post.author.first_name }} {{ post.author.last_name }}
+                                    <i class="fas fa-calendar ms-2"></i> {{ post.created_at|date:"M d, Y" }}
+                                </small>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <a href="{% url 'blog_detail' post.slug %}" class="btn btn-primary">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Pagination -->
+            {% if page_obj.has_other_pages %}
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                Previous
+                            </a>
+                        </li>
+                    {% endif %}
+                    
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ num }}</span>
+                            </li>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                Next
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-newspaper text-muted" style="font-size: 80px;"></i>
+                <h3 class="mt-3">No blog posts yet</h3>
+                <p class="text-muted">Check back soon for the latest insights and tutorials!</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Featured Categories -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Popular Categories</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-code text-primary fa-3x mb-3"></i>
+                        <h5>Programming Tutorials</h5>
+                        <p class="text-muted">Step-by-step coding guides</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-industry text-primary fa-3x mb-3"></i>
+                        <h5>Industry News</h5>
+                        <p class="text-muted">Latest tech trends and updates</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-briefcase text-primary fa-3x mb-3"></i>
+                        <h5>Career Advice</h5>
+                        <p class="text-muted">Tips for landing your dream job</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-graduation-cap text-primary fa-3x mb-3"></i>
+                        <h5>Student Success</h5>
+                        <p class="text-muted">Stories from our graduates</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

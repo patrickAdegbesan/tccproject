@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+{% load currency_filters %}
+
+{% block title %}{{ course.title }} - The Coding School{% endblock %}
+
+{% block main_class %}pt-5{% endblock %}
+
+{% block content %}
+<!-- Course Header -->
+<section class="bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-3">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-white">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'courses' %}" class="text-white">Courses</a></li>
+                        <li class="breadcrumb-item active text-white-50">{{ course.title }}</li>
+                    </ol>
+                </nav>
+                <h1 class="display-5 fw-bold">{{ course.title }}</h1>
+                <p class="lead">{{ course.description }}</p>
+                <div class="course-meta">
+                    <span class="badge bg-{% if course.difficulty == 'beginner' %}success{% elif course.difficulty == 'intermediate' %}warning{% else %}danger{% endif %} me-2">
+                        {{ course.get_difficulty_display }}
+                    </span>
+                    {% if course.is_featured %}
+                        <span class="badge bg-info">Featured Course</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                {% if course.course_image %}
+                    <img src="{{ course.course_image.url }}" class="img-fluid rounded shadow" alt="{{ course.title }}">
+                {% else %}
+                    <div class="bg-white bg-opacity-20 rounded p-5">
+                        <i class="fas fa-code" style="font-size: 120px;"></i>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Course Details -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Course Overview -->
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <h3 class="mb-4">Course Overview</h3>
+                        <p>{{ course.description }}</p>
+                        
+                        <h5 class="mt-4 mb-3">What You'll Learn</h5>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i> Fundamentals of programming</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Best practices and industry standards</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Real-world project development</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Problem-solving techniques</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Career preparation and portfolio building</li>
+                        </ul>
+                        
+                        <h5 class="mt-4 mb-3">Prerequisites</h5>
+                        <p>
+                            {% if course.difficulty == 'beginner' %}
+                                No prior programming experience required. Basic computer literacy is helpful.
+                            {% elif course.difficulty == 'intermediate' %}
+                                Basic programming knowledge and familiarity with at least one programming language.
+                            {% else %}
+                                Strong programming foundation and experience with multiple technologies.
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Instructor -->
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h3 class="mb-4">Meet Your Instructor</h3>
+                        <div class="row align-items-center">
+                            <div class="col-md-3 text-center mb-3">
+                                {% if course.instructor.profile_picture %}
+                                    <img src="{{ course.instructor.profile_picture.url }}" 
+                                         class="rounded-circle" 
+                                         style="width: 120px; height: 120px; object-fit: cover;"
+                                         alt="{{ course.instructor.user.first_name }}">
+                                {% else %}
+                                    <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center"
+                                         style="width: 120px; height: 120px;">
+                                        <i class="fas fa-user text-white fa-3x"></i>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-9">
+                                <h5>{{ course.instructor.user.first_name }} {{ course.instructor.user.last_name }}</h5>
+                                <p class="text-primary fw-bold">{{ course.instructor.specialization }}</p>
+                                <p>{{ course.instructor.bio }}</p>
+                                <small class="text-muted">
+                                    <i class="fas fa-calendar-alt"></i> {{ course.instructor.experience_years }} years of experience
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Enrollment Card -->
+                <div class="card shadow mb-4">
+                    <div class="card-body text-center">
+                        <h3 class="text-primary mb-3">{{ course.price|naira }}</h3>
+                        <p class="text-muted mb-3">Duration: {{ course.duration }}</p>
+                        
+                        {% if user.is_authenticated %}
+                            {% if is_enrolled %}
+                                <div class="alert alert-success">
+                                    <i class="fas fa-check-circle"></i> You are enrolled in this course!
+                                </div>
+                                <a href="{% url 'profile' %}" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-user"></i> View My Progress
+                                </a>
+                            {% else %}
+                                <a href="{% url 'enroll_course' course.pk %}" class="btn btn-primary btn-lg w-100 mb-3">
+                                    <i class="fas fa-graduation-cap"></i> Enroll Now
+                                </a>
+                                <a href="{% url 'contact' %}" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-info-circle"></i> Get More Info
+                                </a>
+                            {% endif %}
+                        {% else %}
+                            <a href="{% url 'register' %}" class="btn btn-primary btn-lg w-100 mb-3">
+                                <i class="fas fa-user-plus"></i> Register to Enroll
+                            </a>
+                            <a href="{% url 'contact' %}" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-info-circle"></i> Get More Info
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- Course Features -->
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <h5 class="mb-3">Course Features</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-clock text-primary me-2"></i>
+                                Duration: {{ course.duration }}
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-signal text-primary me-2"></i>
+                                Level: {{ course.get_difficulty_display }}
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-users text-primary me-2"></i>
+                                Small class sizes
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-laptop text-primary me-2"></i>
+                                Hands-on projects
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-certificate text-primary me-2"></i>
+                                Certificate of completion
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-life-ring text-primary me-2"></i>
+                                Lifetime support
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Schedule -->
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="mb-3">Schedule Options</h5>
+                        <div class="mb-3">
+                            <strong>Full-time</strong>
+                            <br>
+                            <small class="text-muted">Monday - Friday, 9 AM - 5 PM</small>
+                        </div>
+                        <div class="mb-3">
+                            <strong>Part-time</strong>
+                            <br>
+                            <small class="text-muted">Evenings & Weekends</small>
+                        </div>
+                        <div>
+                            <strong>Online</strong>
+                            <br>
+                            <small class="text-muted">Flexible self-paced learning</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Courses -->
+{% if related_courses %}
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="fw-bold mb-4">Related Courses</h2>
+        <div class="row">
+            {% for related_course in related_courses %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    {% if related_course.course_image %}
+                        <img src="{{ related_course.course_image.url }}" class="card-img-top" alt="{{ related_course.title }}">
+                    {% else %}
+                        <div class="card-img-top bg-primary d-flex align-items-center justify-content-center" style="height: 200px;">
+                            <i class="fas fa-code text-white" style="font-size: 60px;"></i>
+                        </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <span class="badge bg-{% if related_course.difficulty == 'beginner' %}success{% elif related_course.difficulty == 'intermediate' %}warning{% else %}danger{% endif %} mb-2">
+                            {{ related_course.get_difficulty_display }}
+                        </span>
+                        <h5 class="card-title">{{ related_course.title }}</h5>
+                        <p class="card-text">{{ related_course.description|truncatewords:15 }}</p>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="text-primary mb-0">{{ related_course.price|naira }}</h6>
+                            <a href="{% url 'course_detail' related_course.pk %}" class="btn btn-sm btn-primary">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,467 @@
+/* Custom styles for TCC Academy */
+
+/* Color scheme: Purple, Black, White */
+:root {
+    --primary-color: #7b2cbf;
+    --secondary-color: #5a189a;
+    --dark-color: #240046;
+    --light-color: #ffffff;
+    --accent-color: #c77dff;
+}
+
+/* General Styles */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    /* Ensure content (and flash messages) are not hidden behind the fixed navbar */
+    padding-top: 88px;
+}
+
+.min-vh-75 {
+    min-height: 75vh;
+}
+
+/* Hero Section with background image */
+.hero-section {
+    background: linear-gradient(rgba(123, 44, 191, 0.8), rgba(90, 24, 154, 0.8)), 
+                url('/static/img/oja.jpg') center/cover no-repeat;
+    min-height: 100vh;
+    position: relative;
+}
+
+.hero-buttons .btn {
+    transition: all 0.3s ease;
+}
+
+.hero-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Cards */
+.card {
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(123, 44, 191, 0.2) !important;
+}
+
+.card-img-top {
+    border-radius: 12px 12px 0 0;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Navigation */
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Custom Purple Buttons */
+.btn-purple {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border: none;
+    color: white;
+}
+
+.btn-purple:hover {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--dark-color) 100%);
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* Primary buttons updated to purple */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--dark-color) 100%);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.btn-outline-primary {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* Text colors */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+/* Background colors */
+.bg-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
+}
+
+/* Badges */
+.badge.bg-primary {
+    background: var(--primary-color) !important;
+}
+
+/* Feature Icons */
+.feature-icon {
+    margin: 0 auto;
+}
+
+.feature-icon i {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+/* Step Numbers */
+.step-number {
+    font-size: 1.5rem;
+    margin: 0 auto;
+}
+
+/* Blog Content */
+.blog-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.blog-content h2,
+.blog-content h3,
+.blog-content h4 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.blog-content p {
+    margin-bottom: 1.5rem;
+}
+
+.blog-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+/* Social Links */
+.social-links a {
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Testimonials */
+.testimonial-card {
+    background: #f8f9fa;
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Course Meta */
+.course-meta {
+    font-size: 0.9rem;
+}
+
+/* Forms */
+.form-control {
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    padding: 12px 16px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(123, 44, 191, 0.25);
+}
+
+/* Progress bars */
+.progress-bar {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+}
+
+/* Newsletter Section */
+.newsletter-section {
+    padding: 3rem 0;
+}
+
+.newsletter-card {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.newsletter-input-group {
+    border-radius: 50px;
+    background: white;
+    padding: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.newsletter-input {
+    background: transparent !important;
+    border: none !important;
+    padding: 0.75rem 1.25rem !important;
+    font-size: 1rem;
+    color: #333;
+    border-radius: 50px !important;
+}
+
+.newsletter-input:focus {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.newsletter-input::placeholder {
+    color: #666;
+    font-weight: 400;
+}
+
+.newsletter-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.newsletter-btn:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--dark-color));
+    color: white;
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(123, 44, 191, 0.4);
+}
+
+.newsletter-privacy {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+.newsletter-privacy i {
+    margin-right: 5px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.text-white-75 {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* Newsletter responsive */
+@media (max-width: 768px) {
+    .newsletter-card {
+        padding: 2rem 1.5rem;
+        margin: 0 1rem;
+    }
+    
+    .newsletter-input {
+        font-size: 0.95rem;
+        padding: 0.6rem 1rem !important;
+    }
+    
+    .newsletter-btn {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-buttons .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-buttons .btn:last-child {
+        margin-bottom: 0;
+    }
+    
+    .feature-icon {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    
+    .feature-icon i {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Loading States */
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Django messages (flash alerts) */
+.alert {
+    border: none;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.alert-success {
+    background-color: #e6f4ea;
+    color: #1e5b34;
+}
+
+.alert-info {
+    background-color: #e7f1ff;
+    color: #0a3d91;
+}
+
+.alert-warning {
+    background-color: #fff7e6;
+    color: #7a4b00;
+}
+
+.alert-error,
+.alert-danger {
+    background-color: #fdeaea;
+    color: #7a1f1f;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .footer,
+    .btn,
+    .pagination {
+        display: none !important;
+    }
+    
+    .card {
+        break-inside: avoid;
+    }
+}
+
+/* Enhanced Feature Icons */
+.feature-icon-enhanced {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 10px 30px rgba(138, 43, 226, 0.3);
+    transition: all 0.3s ease;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-icon-enhanced::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.feature-icon-enhanced:hover::before {
+    opacity: 1;
+    animation: shimmer 0.8s ease-in-out;
+}
+
+.feature-icon-enhanced:hover {
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 0 20px 50px rgba(138, 43, 226, 0.4);
+}
+
+.feature-icon-enhanced i {
+    z-index: 2;
+    position: relative;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}

@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+
+{% block title %}About Us - The Coding School{% endblock %}
+
+{% block main_class %}pt-5{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="bg-primary text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="display-4 fw-bold">About The Coding School</h1>
+                <p class="lead">Empowering the next generation of developers</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-4">Our Mission</h2>
+                <p class="lead">
+                    At The Coding School, we believe that everyone should have access to high-quality programming education. 
+                    Our mission is to transform lives through code by providing comprehensive, practical, and industry-relevant 
+                    training that prepares students for successful careers in technology.
+                </p>
+                <p>
+                    We focus on hands-on learning, real-world projects, and personalized mentorship to ensure our graduates 
+                    are not just coders, but problem-solvers ready to make an impact in the tech industry.
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <div class="text-center">
+                    <i class="fas fa-graduation-cap text-primary" style="font-size: 150px;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Why Choose The Coding School?</h2>
+            <p class="lead text-muted">What sets us apart from other coding schools</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="feature-icon-enhanced mb-3">
+                        <i class="fas fa-chalkboard-teacher fa-2x"></i>
+                    </div>
+                    <h4>Expert Instructors</h4>
+                    <p class="text-muted">Learn from industry professionals with years of real-world experience in top tech companies.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="feature-icon-enhanced mb-3">
+                        <i class="fas fa-laptop-code fa-2x"></i>
+                    </div>
+                    <h4>Project-Based Learning</h4>
+                    <p class="text-muted">Build a portfolio of real projects that demonstrate your skills to potential employers.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="feature-icon-enhanced mb-3">
+                        <i class="fas fa-user-graduate fa-2x"></i>
+                    </div>
+                    <h4>Career Support</h4>
+                    <p class="text-muted">Get personalized career coaching, interview preparation, and job placement assistance.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="feature-icon-enhanced mb-3">
+                        <i class="fas fa-clock fa-2x"></i>
+                    </div>
+                    <h4>Flexible Scheduling</h4>
+                    <p class="text-muted">Choose from full-time, part-time, or online programs that fit your lifestyle and schedule.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="feature-icon-enhanced mb-3">
+                        <i class="fas fa-building fa-2x"></i>
+                    </div>
+                    <h4>Industry Partnerships</h4>
+                    <p class="text-muted">Direct connections with hiring partners including startups, Fortune 500 companies, and agencies.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="feature-icon-enhanced mb-3">
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <h4>Supportive Community</h4>
+                    <p class="text-muted">Join a community of learners, alumni, and mentors who support each other's growth.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Instructors Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Meet Our Instructors</h2>
+            <p class="lead text-muted">Learn from the best in the industry</p>
+        </div>
+        
+        {% if instructors %}
+            <div class="row">
+                {% for instructor in instructors %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            {% if instructor.profile_picture %}
+                                <img src="{{ instructor.profile_picture.url }}" 
+                                     class="rounded-circle mb-3" 
+                                     style="width: 120px; height: 120px; object-fit: cover;"
+                                     alt="{{ instructor.user.first_name }}">
+                            {% else %}
+                                <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                                     style="width: 120px; height: 120px;">
+                                    <i class="fas fa-user text-white fa-3x"></i>
+                                </div>
+                            {% endif %}
+                            <h5 class="card-title">{{ instructor.user.first_name }} {{ instructor.user.last_name }}</h5>
+                            <p class="text-primary fw-bold">{{ instructor.specialization }}</p>
+                            <p class="card-text">{{ instructor.bio|truncatewords:20 }}</p>
+                            <small class="text-muted">
+                                <i class="fas fa-calendar-alt"></i> {{ instructor.experience_years }} years experience
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center">
+                <p class="text-muted">Instructor profiles coming soon!</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="bg-primary text-white py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Our Values</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="text-center">
+                    <i class="fas fa-lightbulb fa-3x mb-3"></i>
+                    <h5>Innovation</h5>
+                    <p>We embrace new technologies and teaching methods to provide cutting-edge education.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="text-center">
+                    <i class="fas fa-users fa-3x mb-3"></i>
+                    <h5>Inclusion</h5>
+                    <p>We welcome students from all backgrounds and create an inclusive learning environment.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="text-center">
+                    <i class="fas fa-trophy fa-3x mb-3"></i>
+                    <h5>Excellence</h5>
+                    <p>We maintain the highest standards in education and student outcomes.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="text-center">
+                    <i class="fas fa-rocket fa-3x mb-3"></i>
+                    <h5>Growth</h5>
+                    <p>We foster continuous learning and personal development for all our students.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

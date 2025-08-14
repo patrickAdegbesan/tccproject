@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} - TechCode Academy Blog{% endblock %}
+
+{% block main_class %}pt-5{% endblock %}
+
+{% block content %}
+<!-- Blog Header -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'blog' %}">Blog</a></li>
+                        <li class="breadcrumb-item active">{{ post.title|truncatewords:5 }}</li>
+                    </ol>
+                </nav>
+                
+                <h1 class="display-5 fw-bold mb-3">{{ post.title }}</h1>
+                
+                <div class="blog-meta mb-4">
+                    <div class="d-flex align-items-center text-muted">
+                        <i class="fas fa-user me-2"></i>
+                        <span class="me-3">{{ post.author.first_name }} {{ post.author.last_name }}</span>
+                        <i class="fas fa-calendar me-2"></i>
+                        <span class="me-3">{{ post.created_at|date:"F d, Y" }}</span>
+                        <i class="fas fa-clock me-2"></i>
+                        <span>5 min read</span>
+                    </div>
+                </div>
+                
+                {% if post.featured_image %}
+                    <img src="{{ post.featured_image.url }}" class="img-fluid rounded mb-4" alt="{{ post.title }}">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Content -->
+<section class="pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <article class="blog-content">
+                    {{ post.content|linebreaks }}
+                </article>
+                
+                <!-- Share Section -->
+                <hr class="my-5">
+                <div class="text-center">
+                    <h5 class="mb-3">Share this post</h5>
+                    <div class="share-buttons">
+                        <a href="#" class="btn btn-outline-primary me-2">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                        <a href="#" class="btn btn-outline-info me-2">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </a>
+                        <a href="#" class="btn btn-outline-primary me-2">
+                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        </a>
+                        <a href="#" class="btn btn-outline-secondary">
+                            <i class="fas fa-link"></i> Copy Link
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Author Bio -->
+                <hr class="my-5">
+                <div class="author-bio">
+                    <div class="row align-items-center">
+                        <div class="col-md-3 text-center mb-3">
+                            <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center"
+                                 style="width: 100px; height: 100px;">
+                                <i class="fas fa-user text-white fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <h5>{{ post.author.first_name }} {{ post.author.last_name }}</h5>
+                            <p class="text-muted">
+                                Our expert instructors bring years of industry experience to help you learn the latest technologies and best practices in software development.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Posts -->
+{% if recent_posts %}
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="fw-bold mb-4 text-center">More from our Blog</h2>
+        <div class="row">
+            {% for recent_post in recent_posts %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <article class="card h-100 shadow-sm">
+                    {% if recent_post.featured_image %}
+                        <img src="{{ recent_post.featured_image.url }}" class="card-img-top" alt="{{ recent_post.title }}">
+                    {% else %}
+                        <div class="card-img-top bg-primary d-flex align-items-center justify-content-center" style="height: 200px;">
+                            <i class="fas fa-newspaper text-white" style="font-size: 60px;"></i>
+                        </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <a href="{% url 'blog_detail' recent_post.slug %}" class="text-decoration-none">
+                                {{ recent_post.title }}
+                            </a>
+                        </h6>
+                        <p class="card-text small">{{ recent_post.excerpt|truncatewords:15 }}</p>
+                        <small class="text-muted">
+                            <i class="fas fa-calendar"></i> {{ recent_post.created_at|date:"M d, Y" }}
+                        </small>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="{% url 'blog_detail' recent_post.slug %}" class="btn btn-sm btn-primary">
+                            Read More
+                        </a>
+                    </div>
+                </article>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="{% url 'blog' %}" class="btn btn-outline-primary">
+                View All Posts <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

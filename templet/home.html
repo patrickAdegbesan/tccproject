@@ -1,0 +1,270 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load currency_filters %}
+
+{% block main_class %}pt-5{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section text-white py-5">
+    <div class="container">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-8">
+                <h1 class="display-4 fw-bold mb-4">
+                    Master Programming Skills for the Future
+                </h1>
+                <p class="lead mb-4">
+                    Join thousands of students who have transformed their careers with our comprehensive coding bootcamps and courses at The Coding School.
+                </p>
+                <div class="hero-buttons">
+                    <a href="{% url 'courses' %}" class="btn btn-light btn-lg me-3">
+                        <i class="fas fa-play"></i> Start Learning Now
+                    </a>
+                    <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-info-circle"></i> Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="hero-image">
+                    <i class="fas fa-laptop-code text-white" style="font-size: 200px; opacity: 0.8;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Courses Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Featured Courses</h2>
+            <p class="lead text-muted">Start your coding journey with our most popular courses</p>
+        </div>
+        
+        <div class="row">
+            {% for course in featured_courses %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    {% if course.course_image %}
+                        <img src="{{ course.course_image.url }}" class="card-img-top" alt="{{ course.title }}">
+                    {% else %}
+                        <div class="card-img-top bg-primary d-flex align-items-center justify-content-center" style="height: 200px;">
+                            <i class="fas fa-code text-white" style="font-size: 60px;"></i>
+                        </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <span class="badge bg-{{ course.difficulty|yesno:'primary,warning,danger' }} mb-2">
+                            {{ course.get_difficulty_display }}
+                        </span>
+                        <h5 class="card-title">{{ course.title }}</h5>
+                        <p class="card-text">{{ course.description|truncatewords:20 }}</p>
+                        <div class="course-meta">
+                            <small class="text-muted">
+                                <i class="fas fa-clock"></i> {{ course.duration }}
+                                <i class="fas fa-user ms-2"></i> {{ course.instructor.user.first_name }}
+                            </small>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="text-primary mb-0">{{ course.price|naira }}</h5>
+                            <a href="{% url 'course_detail' course.pk %}" class="btn btn-primary">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted">No featured courses available yet.</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="{% url 'courses' %}" class="btn btn-outline-primary btn-lg">
+                View All Courses <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <div class="stat-item">
+                    <h3 class="text-primary fw-bold">5000+</h3>
+                    <p class="text-muted">Students Graduated</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stat-item">
+                    <h3 class="text-primary fw-bold">50+</h3>
+                    <p class="text-muted">Expert Instructors</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stat-item">
+                    <h3 class="text-primary fw-bold">95%</h3>
+                    <p class="text-muted">Job Placement Rate</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stat-item">
+                    <h3 class="text-primary fw-bold">100+</h3>
+                    <p class="text-muted">Hiring Partners</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">What Our Students Say</h2>
+            <p class="lead text-muted">Real success stories from our graduates</p>
+        </div>
+        
+        <div class="row">
+            {% for testimonial in testimonials %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            {% if testimonial.student_image %}
+                                <img src="{{ testimonial.student_image.url }}" 
+                                     class="rounded-circle me-3" 
+                                     style="width: 60px; height: 60px; object-fit: cover;"
+                                     alt="{{ testimonial.student_name }}">
+                            {% else %}
+                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3"
+                                     style="width: 60px; height: 60px;">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                            {% endif %}
+                            <div>
+                                <h6 class="mb-0">{{ testimonial.student_name }}</h6>
+                                <div class="text-warning">
+                                    {% for i in "12345"|make_list %}
+                                        {% if forloop.counter <= testimonial.rating %}
+                                            <i class="fas fa-star"></i>
+                                        {% else %}
+                                            <i class="far fa-star"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text">"{{ testimonial.content }}"</p>
+                        {% if testimonial.course %}
+                            <small class="text-muted">{{ testimonial.course.title }}</small>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted">No testimonials available yet.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="bg-primary text-white py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-3">Ready to Start Your Coding Journey?</h2>
+        <p class="lead mb-4">Join our community of passionate developers and transform your career today.</p>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="d-flex gap-2 mb-4">
+                    <a href="{% url 'admissions' %}" class="btn btn-light btn-lg flex-fill">
+                        <i class="fas fa-graduation-cap"></i> Apply Now
+                    </a>
+                    <a href="{% url 'contact' %}" class="btn btn-outline-light btn-lg flex-fill">
+                        <i class="fas fa-phone"></i> Talk to an Advisor
+                    </a>
+                </div>
+                
+                <!-- Newsletter Subscription -->
+                <div class="newsletter-section mt-5">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="newsletter-card">
+                                <div class="text-center mb-4">
+                                    <h4 class="text-white mb-3">📧 Stay in the Loop</h4>
+                                    <p class="text-white-75 mb-0">Get exclusive programming tips and course updates</p>
+                                </div>
+                                
+                                <form id="newsletter-form" class="newsletter-form">
+                                    {% csrf_token %}
+                                    <div class="input-group newsletter-input-group">
+                                        <input type="email" name="email" class="form-control newsletter-input" 
+                                               placeholder="Enter your email address" required>
+                                        <button type="submit" class="btn newsletter-btn">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                                <div id="newsletter-message" class="mt-3 text-center"></div>
+                                
+                                <p class="newsletter-privacy text-center mt-3 mb-0">
+                                    <i class="fas fa-shield-alt"></i> No spam, unsubscribe anytime
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block extra_js %}
+<script>
+document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const form = this;
+    const messageDiv = document.getElementById('newsletter-message');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const emailInput = form.querySelector('input[type="email"]');
+    
+    // Show loading state
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+    submitBtn.disabled = true;
+    
+    fetch('{% url "newsletter_subscribe" %}', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+            'X-CSRFToken': form.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            messageDiv.innerHTML = '<div class="alert alert-success alert-sm">' + data.message + '</div>';
+            emailInput.value = '';
+        } else {
+            messageDiv.innerHTML = '<div class="alert alert-danger alert-sm">' + data.message + '</div>';
+        }
+    })
+    .catch(error => {
+        messageDiv.innerHTML = '<div class="alert alert-danger alert-sm">An error occurred. Please try again.</div>';
+    })
+    .finally(() => {
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Subscribe';
+        submitBtn.disabled = false;
+    });
+});
+</script>
+{% endblock %}
+{% endblock %}
