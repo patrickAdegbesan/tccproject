@@ -26,16 +26,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = False
 
-# ALLOWED_HOSTS from environment variable, comma-separated
-<<<<<<< HEAD
-ALLOWED_HOSTS = ['the-code-center.onrender.com']
+# Set allowed hosts for Render deployment
+ALLOWED_HOSTS = ['your-render-app-name.onrender.com']
 
-=======
-ALLOWED_HOSTS=the-code-center.onrender.com
->>>>>>> befbfa1d1b395586d48c6f00dccbfacb76536cdd
+# Set static root for production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Application definition
