@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 
 # Set allowed hosts for Render deployment
-ALLOWED_HOSTS = ['your-render-app-name.onrender.com']
+ALLOWED_HOSTS = ['tccproject.onrender.com']
 
 # Set static root for production
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
