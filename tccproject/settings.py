@@ -30,8 +30,12 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 # ALLOWED_HOSTS from environment variable, comma-separated
+<<<<<<< HEAD
 ALLOWED_HOSTS = ['the-code-center.onrender.com']
 
+=======
+ALLOWED_HOSTS=the-code-center.onrender.com
+>>>>>>> befbfa1d1b395586d48c6f00dccbfacb76536cdd
 
 
 # Application definition
