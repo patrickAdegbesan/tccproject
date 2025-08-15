@@ -40,7 +40,7 @@ else:
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'moviedatabase',
+        'NAME': 'tccproject',
         'USER': 'root',  # MySQL user for Django
         'PASSWORD': 'password',  # MySQL root password (leave empty string if no password)
         'HOST': 'localhost',  # Use TCP protocol, not named pipes
