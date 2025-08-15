@@ -1,0 +1,178 @@
+[
+{
+  "model": "tccwebsite.course",
+  "pk": 1,
+  "fields": {
+    "title": "Software Development",
+    "description": "Comprehensive software development program covering HTML, CSS, PHP, MySQL, PostgreSQL, Python, JavaScript, Node.js, Express.js, MongoDB, and API Development.",
+    "difficulty": "intermediate",
+    "duration": "6 Months",
+    "price": "520000.00",
+    "instructor": 1,
+    "course_image": "",
+    "is_featured": true,
+    "created_at": "2025-08-05T13:30:28.134Z",
+    "updated_at": "2025-08-05T13:30:28.134Z"
+  }
+},
+{
+  "model": "tccwebsite.course",
+  "pk": 2,
+  "fields": {
+    "title": "UI/UX Design",
+    "description": "User Interface and User Experience design course covering HTML, CSS, Wireframing, Mockups, Prototyping, User Research, Design Principles, Color Theory, and Typography.",
+    "difficulty": "beginner",
+    "duration": "6 Months",
+    "price": "470000.00",
+    "instructor": 1,
+    "course_image": "",
+    "is_featured": true,
+    "created_at": "2025-08-05T13:30:28.135Z",
+    "updated_at": "2025-08-05T13:30:28.135Z"
+  }
+},
+{
+  "model": "tccwebsite.course",
+  "pk": 3,
+  "fields": {
+    "title": "Frontend Development",
+    "description": "Modern frontend development using HTML, CSS, Bootstrap, RWD (Responsive Web Design), JavaScript, React.js, and Design Principles.",
+    "difficulty": "intermediate",
+    "duration": "6 Months",
+    "price": "470000.00",
+    "instructor": 1,
+    "course_image": "",
+    "is_featured": true,
+    "created_at": "2025-08-05T13:30:28.139Z",
+    "updated_at": "2025-08-05T13:30:28.139Z"
+  }
+},
+{
+  "model": "tccwebsite.course",
+  "pk": 4,
+  "fields": {
+    "title": "Web Development (PHP Track)",
+    "description": "Web development specializing in PHP backend development with HTML, CSS, PHP, MySQL, and PostgreSQL.",
+    "difficulty": "intermediate",
+    "duration": "4 Months",
+    "price": "420000.00",
+    "instructor": 1,
+    "course_image": "",
+    "is_featured": false,
+    "created_at": "2025-08-05T13:30:28.139Z",
+    "updated_at": "2025-08-05T13:30:28.140Z"
+  }
+},
+{
+  "model": "tccwebsite.course",
+  "pk": 5,
+  "fields": {
+    "title": "Java Programming",
+    "description": "Complete Java programming course covering Java Programming Fundamentals, J2SE Fundamentals, GUI Programming, MySQL, XML Programming, and Developing Enterprise Applications.",
+    "difficulty": "intermediate",
+    "duration": "6 Months",
+    "price": "520000.00",
+    "instructor": 1,
+    "course_image": "",
+    "is_featured": false,
+    "created_at": "2025-08-05T13:30:28.140Z",
+    "updated_at": "2025-08-05T13:30:28.140Z"
+  }
+},
+{
+  "model": "tccwebsite.course",
+  "pk": 6,
+  "fields": {
+    "title": "Mobile Apps Development",
+    "description": "Mobile application development using Android Studio, XML Programming, Flutter Development, Data Storage, Network Handling, SQLite, and Firebase.",
+    "difficulty": "advanced",
+    "duration": "4 Months",
+    "price": "420000.00",
+    "instructor": 1,
+    "course_image": "",
+    "is_featured": false,
+    "created_at": "2025-08-05T13:30:28.142Z",
+    "updated_at": "2025-08-05T13:30:28.142Z"
+  }
+},
+{
+  "model": "tccwebsite.course",
+  "pk": 7,
+  "fields": {
+    "title": "Data Science",
+    "description": "Data Science program covering SQL Programming, Python Programming, Data Extraction, Data Transformation, Data Analysis, Data Visualization/Reporting, and Power BI/Tableau.",
+    "difficulty": "advanced",
+    "duration": "4 Months",
+    "price": "420000.00",
+    "instructor": 1,
+    "course_image": "",
+    "is_featured": false,
+    "created_at": "2025-08-05T13:30:28.143Z",
+    "updated_at": "2025-08-05T13:30:28.143Z"
+  }
+},
+{
+  "model": "tccwebsite.course",
+  "pk": 8,
+  "fields": {
+    "title": "Graphics Design",
+    "description": "Professional graphics design course using Figma, Adobe Photoshop, Adobe Illustrator, Principles of Design, Color Theory, Typography, and Branding.",
+    "difficulty": "beginner",
+    "duration": "3 Months",
+    "price": "300000.00",
+    "instructor": 1,
+    "course_image": "",
+    "is_featured": false,
+    "created_at": "2025-08-05T13:30:28.145Z",
+    "updated_at": "2025-08-05T13:30:28.145Z"
+  }
+},
+{
+  "model": "tccwebsite.course",
+  "pk": 9,
+  "fields": {
+    "title": "Fullstack Development",
+    "description": "Complete fullstack development bootcamp covering HTML, CSS, PHP, MySQL, JavaScript, Node.js, Express.js, MongoDB, React.js, API Development, and UI Design Fundamentals.",
+    "difficulty": "advanced",
+    "duration": "8 Months",
+    "price": "720000.00",
+    "instructor": 1,
+    "course_image": "",
+    "is_featured": true,
+    "created_at": "2025-08-05T13:30:28.146Z",
+    "updated_at": "2025-08-05T13:30:28.146Z"
+  }
+},
+{
+  "model": "tccwebsite.course",
+  "pk": 10,
+  "fields": {
+    "title": "Web Design",
+    "description": "Web design fundamentals covering HTML, CSS, Bootstrap, and Responsive Web Design (RWD).",
+    "difficulty": "beginner",
+    "duration": "10 Weeks",
+    "price": "250000.00",
+    "instructor": 1,
+    "course_image": "",
+    "is_featured": false,
+    "created_at": "2025-08-05T13:30:28.148Z",
+    "updated_at": "2025-08-05T13:30:28.148Z"
+  }
+},
+{
+  "model": "tccwebsite.course",
+  "pk": 11,
+  "fields": {
+    "title": "Python Programming (Web Dev & Scraping)",
+    "description": "Python programming specialized in web development and scraping, covering HTML, CSS, Python, Beautiful Soup, Django, and MySQL.",
+    "difficulty": "intermediate",
+    "duration": "4 Months",
+    "price": "420000.00",
+    "instructor": 1,
+    "course_image": "",
+    "is_featured": false,
+    "created_at": "2025-08-05T13:30:28.197Z",
+    "updated_at": "2025-08-05T13:30:28.197Z"
+  }
+}
+]

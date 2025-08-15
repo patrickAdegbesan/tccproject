@@ -1,0 +1,13 @@
+[
+{
+  "model": "tccwebsite.instructor",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "bio": "Experienced instructor with 10+ years in software development",
+    "profile_picture": "",
+    "specialization": "Full Stack Development",
+    "experience_years": 10
+  }
+}
+]
